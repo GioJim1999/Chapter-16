@@ -8,6 +8,7 @@
 #include"input.h"
 #include"TestScores.h"
 #include"SimpleVector.h"
+#include"IntArray.h"
 using namespace std;
 
 //Function prototypes:
@@ -16,6 +17,7 @@ void Challenge3();
 void Challenge4();
 void Challenge7();
 void Challenge8();
+void Challenge6();
 
 //Function Templates
 template <class T>
@@ -42,11 +44,12 @@ int main()
 			Challenge3(); break;
 		case 4:
 			Challenge4(); break;
+		case 6:
+			Challenge6(); break;
 		case 7:
 			Challenge7(); break;
 		case 8:
 			Challenge8(); break;
-
 		}
 	} while (true);
 
@@ -60,10 +63,9 @@ int menuOptions()
 	cout << "\n\t------------------------------------------------------";
 	cout << "\n\t3. Challenge 3 - Minimum/Maximum Templates";
 	cout << "\n\t4. Challenge 4 - Absolute Value Template";
-	cout << "\n\t6. Challenge 6 - ";
+	cout << "\n\t6. Challenge 6 - Int Array Class Exception";
 	cout << "\n\t7. Challenge 7 - Test Scores Class";
 	cout << "\n\t8. Challenge 8 - Simple Vector Modification";
-	cout << "\n\t12. Challenge 12 - ";
 	cout << "\n\t------------------------------------------------------";
 	cout << "\n\t0. Exit Program";
 	cout << "\n\t------------------------------------------------------";
@@ -79,16 +81,16 @@ void Challenge3()
 	int intX, intY;
 	double doubleX, doubleY;
 
-	intX = inputInteger("\n\tEnter an integer positive of negative: ");
-	intY = inputInteger("\n\tEnter an integer positive of negative: ");
+	intX = inputInteger("\n\tEnter an integer positive or negative: ");
+	intY = inputInteger("\n\tEnter an integer positive or negative: ");
 
 	cout << "\n\tMaximum and Minimum Functions using integers";
 	cout << "\n\t------------------------------------------------------\n";
 	cout << "\n\tMaximum of previous two numbers: " << maximum(intX, intY) << '\n';
 	cout << "\n\tMinumum of last two numbers: " << minimum(intX, intY) << '\n';
 
-	doubleX = inputDouble("\n\tEnter a decimal number positive of negative: ");
-	doubleY = inputDouble("\n\tEnter a decimal number positive of negative: ");
+	doubleX = inputDouble("\n\tEnter a decimal number positive or negative: ");
+	doubleY = inputDouble("\n\tEnter a decimal number positive or negative: ");
 
 	cout << "\n\tMaximum and Minimum Functions using decimals";
 	cout << "\n\t------------------------------------------------------\n";
@@ -112,6 +114,31 @@ void Challenge4()
 	cout << "\n\tAbsolute Value of previous decimal number: " << absValue(doubleX);
 
 	cout << "\n\n";
+	system("pause");
+}
+
+void Challenge6()
+{
+	system("cls");
+	cout << "\n\tChallenge 6 - Int Array Class Exception";
+	cout << "\n\t------------------------------------------------------";
+	cout << "\n";
+
+	IntArray test;
+	cout << "\n\tArray: \n";
+	test.display();
+	cout << "\n";
+
+	try
+	{
+		test.displayIndex(inputInteger("\n\tEnter an index to display: "));
+	}
+	catch (IntArray::IndexOutOfRange)
+	{
+		cout << "\n\tThat index is out of range of the array!";
+	}
+
+	cout << "\n";
 	system("pause");
 }
 
@@ -158,8 +185,20 @@ void Challenge8()
 	for (int i = 0; i < 6; i++)
 		test[i] = inputInteger("\n\tEnter a number: ");
 
+	test.push_back(inputInteger("\n\tEnter a number to add to the end of the array: "));
 
+	cout << "\n\tPUSH BACK METHOD: ";
 
+	for (int i = 0; i < 7; i++)
+		cout << "\n\t" << test[i];
+
+	cout << "\n";
+	cout << "\n\tPOP METHOD: ";
+
+	test.pop_back();
+
+	for (int i = 0; i < 6; i++)
+		cout << "\n\t" << test[i];
 	cout << "\n";
 
 	cout << "\n";

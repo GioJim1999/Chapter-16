@@ -38,12 +38,46 @@ public:
     //Accessor to return specific element
     T getElementAt(int position);
 
-    void push_back(int item)
+
+    void push_back(T item)
     {
-        
+        T* tempPtr1 = new T[arraySize + 1];
+        T* tempPtr2 = nullptr;
+
+        for (int i = 0; i < arraySize; i++)
+            *(tempPtr1 + i) = *(aptr + i);
+
+        tempPtr1[arraySize] = item;
+
+        arraySize++;
+
+        //swap the arrays
+        tempPtr2 = aptr;
+        aptr = tempPtr1;
+        tempPtr1 = tempPtr2;
+        tempPtr2 = nullptr;
+
+        //Delete old array.
+        delete[] tempPtr1;
     }
 
-    //T pop_back();
+    void pop_back()
+    {
+        T* tempPtr1 = new T[arraySize - 1]; 
+        T* tempPtr2 = nullptr;
+
+        for (int i = 0; i < arraySize - 1; i++)
+            *(tempPtr1 + i) = *(aptr + i);
+
+        //swap arrays
+        tempPtr2 = aptr;
+        aptr = tempPtr1;
+        tempPtr1 = tempPtr2;
+        tempPtr2 = nullptr;
+
+        //Delete old array:
+        delete[] tempPtr1;
+    }
 
     //Overloaded [] operator:
     T& operator[] (const int&);
